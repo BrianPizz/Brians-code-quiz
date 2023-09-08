@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <header>
+        <div class="high-scores"><a href="#">View high scores</a></div>
+        <div class="timer">time</div>
+    </header>
+    <div class="start">
+        <h2>Start the quiz!</h2>
+        <button class="start-btn">Start Quiz</button>
+    </div>
+    <div class="quiz">
+        <h2 class="question">Question</h2>
+            <div class="answers">
+                <button class="answer ans1">Answer</button>
+                <button class="answer ans2">Answer</button>
+                <button class="answer ans3">Answer</button>
+                <button class="answer ans4">Answer</button>
+            </div>
+            <div class="feedback">
+                Correct!
+            </div>
+    </div>
+    <div class="end">
+        <h2>All Done!</h2>
+        <p class="score-display">Your score is: <span class="score"></span></p>
+        <input type="text" placeholder="Enter your name"class='name'/>
+        <button class="save">Save Your Score</button>
+    </div>
+    <div class="highscore">
+        <h2>High scores</h2>
+    </div>
 </body>
+
 </html>
