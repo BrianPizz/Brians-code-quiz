@@ -11,7 +11,7 @@
 <body>
     <!-- header with link to high scores and timer -->
     <header>
-        <div class="high-scores"><a href="#">View high scores</a></div>
+        <button class="highscore-link">view high score</button>
         <div class="timer">time</div>
     </header>
     <!-- home screen -->
@@ -23,10 +23,10 @@
     <div class="quiz">
         <h2 class="question">Question</h2>
             <div class="answers">
-                <button class="answer ans1">Answer</button>
-                <button class="answer ans2">Answer</button>
-                <button class="answer ans3">Answer</button>
-                <button class="answer ans4">Answer</button>
+                <button class="answer A">Answer</button>
+                <button class="answer B">Answer</button>
+                <button class="answer C">Answer</button>
+                <button class="answer D">Answer</button>
             </div>
             <div class="feedback">
                 Correct!
@@ -42,9 +42,10 @@
     <!-- High score screen with option to clear and play again -->
     <div class="highscore">
         <h2>High scores</h2>
-        <ol>
-            
-        </ol>
+        <div class="leaderboard">
+            <div>Name</div>
+            <div>Score</div>
+        </div>
         <button class="clear">clear scores</button>
         <button class="play-again">Play again</button>
     </div>
