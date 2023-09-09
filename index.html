@@ -11,8 +11,8 @@
 <body>
     <!-- header with link to high scores and timer -->
     <header>
-        <button class="highscore-link">view high score</button>
-        <div class="timer">time</div>
+        <button class="high-score-btn">view high score</button>
+        <div class="timer"></div>
     </header>
     <!-- home screen -->
     <div class="start">
@@ -20,7 +20,7 @@
         <button class="start-btn">Start Quiz</button>
     </div>
     <!-- quiz display -->
-    <div class="quiz">
+    <div class="quiz hide">
         <h2 class="question">Question</h2>
             <div class="answers">
                 <button class="answer A">Answer</button>
@@ -33,22 +33,22 @@
             </div>
     </div>
     <!-- Ending display -->
-    <div class="end">
+    <div class="end hide">
         <h2>All Done!</h2>
         <p class="score-display">Your score is: <span class="score"></span></p>
         <input type="text" placeholder="Enter your name"class='name'/>
         <button class="save">Save Your Score</button>
     </div>
     <!-- High score screen with option to clear and play again -->
-    <div class="highscore">
+    <div class="high-score hide">
         <h2>High scores</h2>
-        <div class="leaderboard">
-            <div>Name</div>
-            <div>Score</div>
-        </div>
-        <button class="clear">clear scores</button>
+        <ol class="leaderboard">
+            
+        </ol>
+        <button class="clear-score">clear scores</button>
         <button class="play-again">Play again</button>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
