@@ -15,7 +15,7 @@ const saveScoreBtn = document.querySelector('.save');
 const scoreScreen = document.querySelector('.high-score');
 const nameListEl = document.querySelector('.name-list');
 const scoreListEl = document.querySelector('.score-list');
-const clearScoreBtn = document.querySelector('.clear');
+const clearScoreBtn = document.querySelector('.clear-score');
 const playAgainBtn = document.querySelector('.play-again');
 
 //Questions
@@ -75,10 +75,10 @@ function startTimer() {
         timeLeft--;
         timer.textContent = "Time left: " + timeLeft;
         if (timeLeft <= 0) {
-            
+
             clearInterval(timerInterval);
             endGame();
-        } 
+        }
     }, 1000)
 
 };
@@ -87,7 +87,7 @@ function startTimer() {
 let score = 0;
 
 function startQuiz() {
-    
+
     startScreen.classList.add('hide');
     quizScreen.classList.remove('hide');
     scoreScreen.classList.add('hide')
@@ -107,13 +107,13 @@ function showQuestions() {
         answerBtn.classList.add('answer');
         answerBtn.classList.add('button');
         answerBtn.textContent = answer;
-        answerBtn.addEventListener('click',function(){ checkAnswer(index)});
+        answerBtn.addEventListener('click', function () { checkAnswer(index) });
         answerEl.appendChild(answerBtn);
     })
 };
 //check answer
 function checkAnswer(index) {
-    if(index === questions[questionNum].answerIndex){
+    if (index === questions[questionNum].answerIndex) {
         score += 20;
         feedback.textContent = "Correct!";
         feedback.classList.remove('wrong');
@@ -124,39 +124,87 @@ function checkAnswer(index) {
         feedback.classList.add('wrong');
     };
     questionNum++;
-    if(questionNum < questions.length){
+    if (questionNum < questions.length) {
         showQuestions();
     } else {
         endGame();
     };
-    
+
 };
 //end quiz
-function endGame(){
+function endGame() {
     quizScreen.classList.add('hide');
     // headerEl.classList.add('hide');
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
-    
+
     scoreEl.textContent = score;
 }
 //show high score
-function saveScore(){
+previousScore();
+var playersArr;
+var scoreArr;
+console.log(playersArr);
+console.log(scoreArr);
+
+// set previous scores to leaderboard
+function previousScore() {
+    playersArr = JSON.parse(localStorage.getItem('names'));
+
+    for (let i = 0; i < playersArr?.length; i++) {
+        let playerName = document.createElement('li');
+        playerName.textContent = playersArr[i];
+        nameListEl.appendChild(playerName);
+    };
+
+    scoreArr = JSON.parse(localStorage.getItem('scores'));
+
+    for (let i = 0; i < scoreArr?.length; i++) {
+        let playerScore = document.createElement('li');
+        playerScore.textContent = scoreArr[i];
+        scoreListEl.appendChild(playerScore);
+    };
+}
+function saveScore() {
+
     endScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
+
     let playerName = document.createElement('li');
     playerName.textContent = nameEl.value;
     nameListEl.appendChild(playerName);
+
+    if (playersArr === null) {
+        playersArr = [nameEl.value];
+        localStorage.setItem('names', JSON.stringify(playersArr));
+    } else {
+        playersArr.push(nameEl.value);
+        localStorage.setItem('names', JSON.stringify(playersArr));
+    }
+
     let playerScore = document.createElement('li');
     playerScore.textContent = score;
     scoreListEl.appendChild(playerScore);
+
+    if (scoreArr === null) {
+        scoreArr = [score];
+        localStorage.setItem('scores', JSON.stringify(scoreArr));
+    } else {
+        scoreArr.push(score);
+        localStorage.setItem('scores', JSON.stringify(scoreArr));
+    }
 };
-function refreshPage(){
+function refreshPage() {
     window.location.reload();
-} 
+}
+
+function clearScore() {
+    localStorage.removeItem('names');
+    localStorage.removeItem('scores');
+}
 //event listeners
 // highScoreBtn.addEventListener('click',);
 startBtn.addEventListener('click', startQuiz);
-saveScoreBtn.addEventListener('click',saveScore);
-// clearScoreBtn.addEventListener('click',);
+saveScoreBtn.addEventListener('click', saveScore);
+clearScoreBtn.addEventListener('click', clearScore);
 // playAgainBtn.addEventListener('click', );
