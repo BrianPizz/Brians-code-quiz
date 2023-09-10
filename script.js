@@ -8,11 +8,12 @@ const questionEl = document.querySelector('.question');
 const answerEl = document.querySelector('.answers');
 const feedback = document.querySelector('.feedback');
 const endScreen = document.querySelector('.end');
-const score = document.querySelector('.score');
-const name = document.querySelector('.name');
+const scoreEl = document.querySelector('.score');
+const nameEl = document.querySelector('.name');
 const saveScoreBtn = document.querySelector('.save');
 const scoreScreen = document.querySelector('.high-score');
-const leaderboard = document.querySelector('.leaderboard');
+const nameListEl = document.querySelector('.name-list');
+const scoreListEl = document.querySelector('.score-list');
 const clearScoreBtn = document.querySelector('.clear');
 const playAgainBtn = document.querySelector('.play-again');
 
@@ -66,7 +67,7 @@ const questions = [
 ];
 
 //timer
-var timeLeft = 61;
+let timeLeft = 61;
 
 function startTimer() {
     let timerInterval = setInterval(function () {
@@ -80,37 +81,66 @@ function startTimer() {
 };
 
 //start quiz
+let score = 0;
+
 function startQuiz() {
     startScreen.classList.add('hide');
     quizScreen.classList.remove('hide');
     showQuestions();
 };
 //show questions
+var questionNum = 0;
+
+
 function showQuestions() {
-    let questionNum = 0;
     let currentQ = questions[questionNum];
     questionEl.textContent = currentQ.question;
-    console.log(questions.question);
-    answerEl.innerHTML = '';
-    currentQ.options.forEach(function (answer) {
+    answerEl.textContent = '';
+    currentQ.options.forEach(function (answer, index) {
         let answerBtn = document.createElement('button');
         answerBtn.classList.add('answer');
         answerBtn.textContent = answer;
-        answerBtn.addEventListener('click', checkAnswer);
+        answerBtn.addEventListener('click',function(){ checkAnswer(index)});
         answerEl.appendChild(answerBtn);
     })
 };
 //check answer
-function checkAnswer() {
-
+function checkAnswer(index) {
+    if(index === questions[questionNum].answerIndex){
+        score += 20;
+        feedback.textContent = "Correct!";
+    } else {
+        timeLeft -= 5;
+        feedback.textContent = "Wrong!";
+    };
+    questionNum++;
+    if(questionNum < questions.length && timeLeft > 0){
+        showQuestions();
+    } else {
+        endGame();
+    };
+    
 };
 //end quiz
-
+function endGame(){
+    quizScreen.classList.add('hide');
+    endScreen.classList.remove('hide');
+    scoreEl.textContent = score;
+}
 //show high score
-
+function saveScore(){
+    endScreen.classList.add('hide');
+    scoreScreen.classList.remove('hide');
+    let playerName = document.createElement('li');
+    playerName.textContent = nameEl.value;
+    nameListEl.appendChild(playerName);
+    let playerScore = document.createElement('li');
+    playerScore.textContent = score;
+    scoreListEl.appendChild(playerScore);
+};
 //event listeners
 // highScoreBtn.addEventListener('click',);
 startBtn.addEventListener('click', startQuiz);
-// saveScoreBtn.addEventListener('click',);
+saveScoreBtn.addEventListener('click',saveScore);
 // clearScoreBtn.addEventListener('click',);
 // playAgainBtn.addEventListener('click',);
