@@ -146,11 +146,11 @@ color: var(--heading);
 .score-list{
     list-style: none;
 }
-/* .hide{
+.hide{
     display: none;
-} */
+}
 @media screen and (max-width: 800px){
     .question, .answers {
-        width: 100%;
+        width: 95%;
     }
 }

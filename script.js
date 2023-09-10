@@ -1,4 +1,5 @@
 // Document variables
+const headerEl = document.querySelector('header')
 const highScoreBtn = document.querySelector('.high-score-btn');
 const timer = document.querySelector('.timer')
 const startScreen = document.querySelector('.start');
@@ -67,15 +68,15 @@ const questions = [
 ];
 
 //timer
-let timeLeft = 61;
+let timeLeft = 11
 
 function startTimer() {
     let timerInterval = setInterval(function () {
         timeLeft--;
         timer.textContent = "Time left: " + timeLeft;
         if (timeLeft === 0) {
-            endQuiz();
-        }
+            endGame();
+        } 
     }, 1000)
 
 };
@@ -84,14 +85,16 @@ function startTimer() {
 let score = 0;
 
 function startQuiz() {
+    
     startScreen.classList.add('hide');
     quizScreen.classList.remove('hide');
+    scoreScreen.classList.add('hide')
     startTimer();
     showQuestions();
 };
 //show questions
-var questionNum = 0;
 
+var questionNum = 0;
 
 function showQuestions() {
     let currentQ = questions[questionNum];
@@ -119,7 +122,7 @@ function checkAnswer(index) {
         feedback.classList.add('wrong');
     };
     questionNum++;
-    if(questionNum < questions.length && timeLeft > 0){
+    if(questionNum < questions.length){
         showQuestions();
     } else {
         endGame();
@@ -129,7 +132,10 @@ function checkAnswer(index) {
 //end quiz
 function endGame(){
     quizScreen.classList.add('hide');
+    // headerEl.classList.add('hide');
+    scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
+    
     scoreEl.textContent = score;
 }
 //show high score
@@ -148,4 +154,4 @@ function saveScore(){
 startBtn.addEventListener('click', startQuiz);
 saveScoreBtn.addEventListener('click',saveScore);
 // clearScoreBtn.addEventListener('click',);
-// playAgainBtn.addEventListener('click',);
+playAgainBtn.addEventListener('click', startQuiz);
