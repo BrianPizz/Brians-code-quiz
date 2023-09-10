@@ -74,7 +74,9 @@ function startTimer() {
     let timerInterval = setInterval(function () {
         timeLeft--;
         timer.textContent = "Time left: " + timeLeft;
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
+            
+            clearInterval(timerInterval);
             endGame();
         } 
     }, 1000)
@@ -149,9 +151,12 @@ function saveScore(){
     playerScore.textContent = score;
     scoreListEl.appendChild(playerScore);
 };
+function refreshPage(){
+    window.location.reload();
+} 
 //event listeners
 // highScoreBtn.addEventListener('click',);
 startBtn.addEventListener('click', startQuiz);
 saveScoreBtn.addEventListener('click',saveScore);
 // clearScoreBtn.addEventListener('click',);
-playAgainBtn.addEventListener('click', startQuiz);
+// playAgainBtn.addEventListener('click', );
