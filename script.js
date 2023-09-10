@@ -72,7 +72,7 @@ let timeLeft = 61;
 function startTimer() {
     let timerInterval = setInterval(function () {
         timeLeft--;
-        timer.textContent = timeLeft;
+        timer.textContent = "Time left: " + timeLeft;
         if (timeLeft === 0) {
             endQuiz();
         }
@@ -86,6 +86,7 @@ let score = 0;
 function startQuiz() {
     startScreen.classList.add('hide');
     quizScreen.classList.remove('hide');
+    startTimer();
     showQuestions();
 };
 //show questions
@@ -99,6 +100,7 @@ function showQuestions() {
     currentQ.options.forEach(function (answer, index) {
         let answerBtn = document.createElement('button');
         answerBtn.classList.add('answer');
+        answerBtn.classList.add('button');
         answerBtn.textContent = answer;
         answerBtn.addEventListener('click',function(){ checkAnswer(index)});
         answerEl.appendChild(answerBtn);
@@ -109,9 +111,12 @@ function checkAnswer(index) {
     if(index === questions[questionNum].answerIndex){
         score += 20;
         feedback.textContent = "Correct!";
+        feedback.classList.remove('wrong');
+
     } else {
         timeLeft -= 5;
         feedback.textContent = "Wrong!";
+        feedback.classList.add('wrong');
     };
     questionNum++;
     if(questionNum < questions.length && timeLeft > 0){

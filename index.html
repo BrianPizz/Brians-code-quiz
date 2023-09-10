@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- header with link to high scores and timer -->
     <header>
-        <button class="high-score-btn">view high score</button>
+        <button class="high-score-btn">View high score</button>
         <div class="timer"></div>
     </header>
     <!-- home screen -->
     <div class="start">
         <h2>Start the quiz!</h2>
-        <button class="start-btn">Start Quiz</button>
+        <button class="start-btn button">Start Quiz</button>
     </div>
     <!-- quiz display -->
     <div class="quiz hide">
@@ -34,7 +37,7 @@
         <h2>All Done!</h2>
         <p class="score-display">Your score is: <span class="score"></span></p>
         <input type="text" placeholder="Enter your name"class='name'/>
-        <button class="save">Save Your Score</button>
+        <button class="save button">Save Your Score</button>
     </div>
     <!-- High score screen with option to clear and play again -->
     <div class="high-score hide">
@@ -47,8 +50,8 @@
 
             </ul>
         </div>
-        <button class="clear-score">clear scores</button>
-        <button class="play-again">Play again</button>
+        <button class="clear-score button">clear scores</button>
+        <button class="play-again button">Play again</button>
     </div>
     <script src="script.js"></script>
 </body>
