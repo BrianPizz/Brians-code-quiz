@@ -65,7 +65,12 @@ const questions = [
         answerIndex: 3,
     },
 ];
-
+// view scores
+function showScore(){
+    listEl.classList.remove('hide');
+    startScreen.classList.add('hide');
+    scoreScreen.classList.remove('hide');
+}
 //timer
 let timeLeft = 11
 
@@ -86,10 +91,10 @@ function startTimer() {
 let score = 0;
 
 function startQuiz() {
-
+    listEl.classList.remove('hide');
     startScreen.classList.add('hide');
     quizScreen.classList.remove('hide');
-    scoreScreen.classList.add('hide')
+    scoreScreen.classList.add('hide');
     startTimer();
     showQuestions();
 };
@@ -133,10 +138,11 @@ function checkAnswer(index) {
 //end quiz
 function endGame() {
     quizScreen.classList.add('hide');
-    // headerEl.classList.add('hide');
+    headerEl.classList.add('hide');
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
 
+    timeLeft = 0;
     scoreEl.textContent = score;
 }
 //show high score
@@ -144,19 +150,14 @@ renderScores();
 var playerScoreArr;
 var player;
 
-console.log(playerScoreArr);
-console.log(player);
-
-
 function renderScores() {
     playerScoreArr = JSON.parse(localStorage.getItem('scores'));
-    playerScoreArr.sort(function(a, b){return b.score - a.score});
+    playerScoreArr?.sort(function(a, b){return b.score - a.score});
 
     for (let i = 0; i < playerScoreArr?.length; i++) {
         let playerScore = document.createElement('li');
         playerScore.textContent = playerScoreArr[i].name + ': ' + playerScoreArr[i].score;
         listEl.appendChild(playerScore);
-        console.log('in the for loop');
 };
 }
 
@@ -192,9 +193,10 @@ function refreshPage() {
 
 function clearScore() {
     localStorage.removeItem('scores');
+    listEl.classList.add('hide');
 }
 //event listeners
-// highScoreBtn.addEventListener('click',);
+highScoreBtn.addEventListener('click', showScore);
 startBtn.addEventListener('click', startQuiz);
 saveScoreBtn.addEventListener('click', saveScore);
 clearScoreBtn.addEventListener('click', clearScore);
