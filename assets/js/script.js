@@ -141,11 +141,10 @@ function checkAnswer(index) {
 //end quiz
 function endGame() {
     quizScreen.classList.add('hide');
-    headerEl.classList.add('hide');
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
 
-    timeLeft = 0;
+    timeLeft = 1;
     scoreEl.textContent = score;
 }
 //show high score
