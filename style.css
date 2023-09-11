@@ -17,7 +17,7 @@
 header{
    display: flex; 
    justify-content: space-between;
-   padding: 10px 10px 10px 10px;
+   padding: 15px;
 
 }
 h2{
@@ -29,7 +29,7 @@ h2{
     color: var(--light);  
     width: 150px;
     padding: 5px;
-    margin: 5px;
+    margin: 15px;
 }
 .button:hover{
     cursor: pointer;
@@ -70,6 +70,7 @@ color: var(--heading);
     width: 40%;
     display: flex;
     flex-direction: column;
+    padding: 10px;
 }
 .answer{
     line-height: 3;
@@ -109,7 +110,7 @@ color: var(--heading);
 }
 .end .name{
     width: 200px;
-    padding: 5px;
+    padding: 7px;
     margin: 15px;
     color: var(--heading);
     border: 3px solid var(--dark);

@@ -126,7 +126,7 @@ function checkAnswer(index) {
         feedback.classList.remove('wrong');
 
     } else {
-        timeLeft -= 5;
+        timeLeft -= 15;
         feedback.textContent = "Wrong!";
         feedback.classList.add('wrong');
     };
