@@ -155,7 +155,7 @@ var player;
 function renderScores() {
     playerScoreArr = JSON.parse(localStorage.getItem('scores'));
     playerScoreArr?.sort(function (a, b) { return b.score - a.score });
-
+    listEl.innerHTML = "";
     for (let i = 0; i < playerScoreArr?.length; i++) {
         let playerScore = document.createElement('li');
         playerScore.textContent = playerScoreArr[i].name + ': ' + playerScoreArr[i].score;
@@ -187,6 +187,7 @@ function saveScore() {
         localStorage.setItem('scores', JSON.stringify(playerScoreArr));
         console.log('in the else save');
     };
+    renderScores();
 };
 
 function refreshPage() {
