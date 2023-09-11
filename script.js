@@ -66,19 +66,22 @@ const questions = [
     },
 ];
 // view scores
-function showScore(){
+function showScore() {
     listEl.classList.remove('hide');
     startScreen.classList.add('hide');
+    quizScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
+    timeLeft = 0;
+
 }
 //timer
-let timeLeft = 11
+let timeLeft = 61;
 
 function startTimer() {
     let timerInterval = setInterval(function () {
         timeLeft--;
         timer.textContent = "Time left: " + timeLeft;
-        if (timeLeft <= 0 ) {
+        if (timeLeft <= 0) {
 
             clearInterval(timerInterval);
             endGame();
@@ -152,13 +155,13 @@ var player;
 
 function renderScores() {
     playerScoreArr = JSON.parse(localStorage.getItem('scores'));
-    playerScoreArr?.sort(function(a, b){return b.score - a.score});
+    playerScoreArr?.sort(function (a, b) { return b.score - a.score });
 
     for (let i = 0; i < playerScoreArr?.length; i++) {
         let playerScore = document.createElement('li');
         playerScore.textContent = playerScoreArr[i].name + ': ' + playerScoreArr[i].score;
         listEl.appendChild(playerScore);
-};
+    };
 }
 
 function saveScore() {
@@ -175,7 +178,7 @@ function saveScore() {
     playerScore.textContent = player.name + ': ' + player.score;
     listEl.appendChild(playerScore);
 
-    if(playerScoreArr === null) {
+    if (playerScoreArr === null) {
 
         playerScoreArr = [player];
         localStorage.setItem('scores', JSON.stringify(playerScoreArr));
