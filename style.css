@@ -132,20 +132,15 @@ color: var(--heading);
     margin-bottom: 15px;
 }
 .leaderboard{
-    display: flex;
     color: var(--light);
     margin-bottom: 25px;
+
 }
 .leaderboard li{
     font-size: 1.2rem;
+    text-align: left;
+}
 
-}
-.name-list{
-    margin-right: 50px;
-}
-.score-list{
-    list-style: none;
-}
 .hide{
     display: none;
 }

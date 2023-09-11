@@ -13,8 +13,7 @@ const scoreEl = document.querySelector('.score');
 const nameEl = document.querySelector('.name');
 const saveScoreBtn = document.querySelector('.save');
 const scoreScreen = document.querySelector('.high-score');
-const nameListEl = document.querySelector('.name-list');
-const scoreListEl = document.querySelector('.score-list');
+const listEl = document.querySelector('.score-list');
 const clearScoreBtn = document.querySelector('.clear-score');
 const playAgainBtn = document.querySelector('.play-again');
 
@@ -74,7 +73,7 @@ function startTimer() {
     let timerInterval = setInterval(function () {
         timeLeft--;
         timer.textContent = "Time left: " + timeLeft;
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 ) {
 
             clearInterval(timerInterval);
             endGame();
@@ -141,65 +140,57 @@ function endGame() {
     scoreEl.textContent = score;
 }
 //show high score
-previousScore();
-var playersArr;
-var scoreArr;
-console.log(playersArr);
-console.log(scoreArr);
+renderScores();
+var playerScoreArr;
+var player;
 
-// set previous scores to leaderboard
-function previousScore() {
-    playersArr = JSON.parse(localStorage.getItem('names'));
+console.log(playerScoreArr);
+console.log(player);
 
-    for (let i = 0; i < playersArr?.length; i++) {
-        let playerName = document.createElement('li');
-        playerName.textContent = playersArr[i];
-        nameListEl.appendChild(playerName);
-    };
 
-    scoreArr = JSON.parse(localStorage.getItem('scores'));
+function renderScores() {
+    playerScoreArr = JSON.parse(localStorage.getItem('scores'));
+    playerScoreArr.sort(function(a, b){return b.score - a.score});
 
-    for (let i = 0; i < scoreArr?.length; i++) {
+    for (let i = 0; i < playerScoreArr?.length; i++) {
         let playerScore = document.createElement('li');
-        playerScore.textContent = scoreArr[i];
-        scoreListEl.appendChild(playerScore);
-    };
+        playerScore.textContent = playerScoreArr[i].name + ': ' + playerScoreArr[i].score;
+        listEl.appendChild(playerScore);
+        console.log('in the for loop');
+};
 }
+
 function saveScore() {
 
     endScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
 
-    let playerName = document.createElement('li');
-    playerName.textContent = nameEl.value;
-    nameListEl.appendChild(playerName);
-
-    if (playersArr === null) {
-        playersArr = [nameEl.value];
-        localStorage.setItem('names', JSON.stringify(playersArr));
-    } else {
-        playersArr.push(nameEl.value);
-        localStorage.setItem('names', JSON.stringify(playersArr));
-    }
+    player = {
+        name: nameEl.value,
+        score: score,
+    };
 
     let playerScore = document.createElement('li');
-    playerScore.textContent = score;
-    scoreListEl.appendChild(playerScore);
+    playerScore.textContent = player.name + ': ' + player.score;
+    listEl.appendChild(playerScore);
 
-    if (scoreArr === null) {
-        scoreArr = [score];
-        localStorage.setItem('scores', JSON.stringify(scoreArr));
+    if(playerScoreArr === null) {
+
+        playerScoreArr = [player];
+        localStorage.setItem('scores', JSON.stringify(playerScoreArr));
+        console.log('in the null save');
     } else {
-        scoreArr.push(score);
-        localStorage.setItem('scores', JSON.stringify(scoreArr));
-    }
+        playerScoreArr.push(player);
+        localStorage.setItem('scores', JSON.stringify(playerScoreArr));
+        console.log('in the else save');
+    };
 };
+
 function refreshPage() {
     window.location.reload();
 }
 
 function clearScore() {
-    localStorage.removeItem('names');
     localStorage.removeItem('scores');
 }
 //event listeners
