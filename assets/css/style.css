@@ -1,12 +1,12 @@
-:root{
+:root {
     --background: #004643;
     --heading: #fffffe;
     --light: #abd1c6;
     --hover: #f9bc60;
     --dark: #001e1d;
-
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -14,70 +14,83 @@
     background-color: var(--background);
     font-family: 'Poppins';
 }
-header{
-   display: flex; 
-   justify-content: space-between;
-   padding: 15px;
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
 
 }
-h2{
+
+h2 {
     font-size: 24px;
 }
-.button{
+
+.button {
     border: 2px solid var(--dark);
     border-radius: 20px;
-    color: var(--light);  
+    color: var(--light);
     width: 150px;
     padding: 5px;
     margin: 15px;
 }
-.button:hover{
+
+.button:hover {
     cursor: pointer;
     background-color: var(--hover);
     color: var(--dark);
 }
-.high-score-btn{
+
+.high-score-btn {
     cursor: pointer;
     border: none;
     color: var(--heading);
 }
-.high-score-btn:hover{
+
+.high-score-btn:hover {
     color: var(--hover);
 }
-.timer{
+
+.timer {
     color: var(--heading);
 }
-.start{
-text-align: center;
-margin-top: 10vh;
-color: var(--heading);
+
+.start {
+    text-align: center;
+    margin-top: 10vh;
+    color: var(--heading);
 }
-.description{
-   width: 40%;
-   margin: 20px 30%;
-   color: var(--light);
+
+.description {
+    width: 40%;
+    margin: 20px 30%;
+    color: var(--light);
 }
-.quiz{
+
+.quiz {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.question{
+
+.question {
     border: 2px solid black;
     width: 40%;
     padding: 10px;
     color: var(--heading);
     font-style: italic;
 }
-.answers{
+
+.answers {
     border: 2px solid black;
     width: 40%;
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-.answer{
+
+.answer {
     line-height: 3;
     width: 60%;
     margin: 5px;
@@ -88,19 +101,23 @@ color: var(--heading);
     border-radius: 5px;
     transition: transform 0.5s;
 }
-.answer:hover{
+
+.answer:hover {
     transform: translateX(5px);
 }
-.feedback{
+
+.feedback {
     margin-top: 10px;
     font-size: 1.5rem;
     color: var(--heading);
     font-weight: 600;
 }
-.wrong{
+
+.wrong {
     color: #e16162;
 }
-.end{
+
+.end {
     text-align: center;
     margin-top: 10vh;
     display: flex;
@@ -109,11 +126,13 @@ color: var(--heading);
     color: var(--heading);
 
 }
-.end .score-display{
+
+.end .score-display {
     padding: 10px;
     color: var(--light);
 }
-.end .name{
+
+.end .name {
     width: 200px;
     padding: 7px;
     margin: 15px;
@@ -121,37 +140,45 @@ color: var(--heading);
     border: 3px solid var(--dark);
     border-radius: 5px;
 }
-.end .save{
+
+.end .save {
     width: 150px;
     padding: 5px;
     margin: 5px;
 }
-.high-score{
+
+.high-score {
     text-align: center;
     margin-top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--heading);   
+    color: var(--heading);
 }
-.high-score h2{
+
+.high-score h2 {
     margin-bottom: 15px;
 }
-.leaderboard{
+
+.leaderboard {
     color: var(--light);
     margin-bottom: 25px;
 
 }
-.leaderboard li{
+
+.leaderboard li {
     font-size: 1.2rem;
     text-align: left;
 }
 
-.hide{
+.hide {
     display: none;
 }
-@media screen and (max-width: 800px){
-    .question, .answers {
+
+@media screen and (max-width: 800px) {
+
+    .question,
+    .answers {
         width: 95%;
     }
 }

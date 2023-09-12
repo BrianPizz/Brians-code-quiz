@@ -7,8 +7,10 @@
     <title>Code Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,300;0,600;1,400&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -27,18 +29,18 @@
     <!-- quiz display -->
     <div class="quiz hide">
         <h2 class="question"></h2>
-            <div class="answers">
+        <div class="answers">
 
-            </div>
-            <div class="feedback">
-                
-            </div>
+        </div>
+        <div class="feedback">
+
+        </div>
     </div>
     <!-- Ending display -->
     <div class="end hide">
         <h2>All Done!</h2>
         <p class="score-display">Your score is: <span class="score"></span></p>
-        <input type="text" placeholder="Enter your initials"class='name'/>
+        <input type="text" placeholder="Enter your initials" class='name' />
         <button class="save button">Save Your Score</button>
     </div>
     <!-- High score screen with option to clear and play again -->
@@ -46,7 +48,7 @@
         <h2>High scores</h2>
         <div class="leaderboard">
             <ol class="score-list">
-            </ol>        
+            </ol>
         </div>
         <button class="clear-score button">clear scores</button>
         <button class="play-again button" onclick="refreshPage()">Play again</button>
