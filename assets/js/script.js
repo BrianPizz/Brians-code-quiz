@@ -71,20 +71,23 @@ function showScore() {
     startScreen.classList.add('hide');
     quizScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
-    timeLeft = 0;
+    //timeLeft = 0;
 
 }
 //timer
-let timeLeft = 61;
+let timeLeft
 
 function startTimer() {
+    timeLeft = 61;
     let timerInterval = setInterval(function () {
-        timeLeft--;
+       
         timer.textContent = "Time left: " + timeLeft;
         if (timeLeft <= 0) {
 
             clearInterval(timerInterval);
             endGame();
+        } else {
+            timeLeft--;
         }
     }, 1000)
 
@@ -126,9 +129,16 @@ function checkAnswer(index) {
         feedback.classList.remove('wrong');
 
     } else {
-        timeLeft -= 15;
-        feedback.textContent = "Wrong!";
-        feedback.classList.add('wrong');
+        if (timeLeft >= 15) {
+            timeLeft -= 15;
+            feedback.textContent = "Wrong!";
+            feedback.classList.add('wrong');
+        } else {
+            timeLeft -= timeLeft;
+            feedback.textContent = "Wrong!";
+            feedback.classList.add('wrong');
+            console.log('sub 15')
+        }
     };
     questionNum++;
     if (questionNum < questions.length) {
@@ -144,7 +154,7 @@ function endGame() {
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
 
-    timeLeft = 1;
+    timeLeft = 0;
     scoreEl.textContent = score;
 }
 //show high score
@@ -185,7 +195,6 @@ function saveScore() {
     } else {
         playerScoreArr.push(player);
         localStorage.setItem('scores', JSON.stringify(playerScoreArr));
-        console.log('in the else save');
     };
     renderScores();
 };
@@ -203,4 +212,3 @@ highScoreBtn.addEventListener('click', showScore);
 startBtn.addEventListener('click', startQuiz);
 saveScoreBtn.addEventListener('click', saveScore);
 clearScoreBtn.addEventListener('click', clearScore);
-// playAgainBtn.addEventListener('click', );
