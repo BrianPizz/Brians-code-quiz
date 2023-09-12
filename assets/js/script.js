@@ -125,15 +125,14 @@ function checkAnswer(index) {
         feedback.textContent = "Correct!";
         feedback.classList.remove('wrong');
     } else {
-        if (timeLeft >= 15) {
-            timeLeft -= 15;
+        if (timeLeft >= 10) {
+            timeLeft -= 10;
             feedback.textContent = "Wrong!";
             feedback.classList.add('wrong');
         } else {
             timeLeft -= timeLeft;
             feedback.textContent = "Wrong!";
             feedback.classList.add('wrong');
-            console.log('sub 15')
         }
     };
     questionNum++;
