@@ -71,18 +71,18 @@ function showScore() {
     startScreen.classList.add('hide');
     quizScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
-    //timeLeft = 0;
-
+    headerEl.classList.add('hide');
 }
 //timer
 let timeLeft
+let gameDone = false;
 
 function startTimer() {
-    timeLeft = 61;
+    timeLeft = 60;
     let timerInterval = setInterval(function () {
        
         timer.textContent = "Time left: " + timeLeft;
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 || gameDone) {
 
             clearInterval(timerInterval);
             endGame();
@@ -144,6 +144,7 @@ function checkAnswer(index) {
     if (questionNum < questions.length) {
         showQuestions();
     } else {
+        gameDone = true;
         endGame();
     };
 
@@ -153,9 +154,7 @@ function endGame() {
     quizScreen.classList.add('hide');
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
-
-    timeLeft = 0;
-    scoreEl.textContent = score;
+    scoreEl.textContent = timeLeft;
 }
 //show high score
 renderScores();
@@ -174,13 +173,13 @@ function renderScores() {
 }
 
 function saveScore() {
-
+    headerEl.classList.add('hide');
     endScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
 
     player = {
         name: nameEl.value,
-        score: score,
+        score: timeLeft,
     };
 
     let playerScore = document.createElement('li');
