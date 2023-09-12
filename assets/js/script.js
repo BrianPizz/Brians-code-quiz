@@ -49,7 +49,7 @@ const questions = [
     {
         question: 'How does a "for" loop start?',
         options: [
-            'a. for(i = 0; i <= 5; i++)',
+            'a. for(let i = 0; i <= 5; i++)',
             'b. for i = 1 to 5',
             'c. for(i <= 5; i++)',
             'd. for(i = 0; i <= 5)'],
@@ -65,6 +65,7 @@ const questions = [
         answerIndex: 3,
     },
 ];
+
 // view scores
 function showScore() {
     listEl.classList.remove('hide');
@@ -73,29 +74,27 @@ function showScore() {
     scoreScreen.classList.remove('hide');
     headerEl.classList.add('hide');
 }
+
 //timer
 let timeLeft
 let gameDone = false;
-
+//timer stops when quiz is done or time hits 0
 function startTimer() {
     timeLeft = 60;
     let timerInterval = setInterval(function () {
-       
         timer.textContent = "Time left: " + timeLeft;
         if (timeLeft <= 0 || gameDone) {
-
             clearInterval(timerInterval);
             endGame();
         } else {
             timeLeft--;
         }
     }, 1000)
-
 };
 
 //start quiz
 let score = 0;
-
+//quiz screen is shown and timer startes
 function startQuiz() {
     listEl.classList.remove('hide');
     startScreen.classList.add('hide');
@@ -105,9 +104,8 @@ function startQuiz() {
     showQuestions();
 };
 //show questions
-
 var questionNum = 0;
-
+//the question at current index is displayed with answers
 function showQuestions() {
     let currentQ = questions[questionNum];
     questionEl.textContent = currentQ.question;
@@ -121,13 +119,11 @@ function showQuestions() {
         answerEl.appendChild(answerBtn);
     })
 };
-//check answer
+//check answer and increase question index 
 function checkAnswer(index) {
     if (index === questions[questionNum].answerIndex) {
-        score += 20;
         feedback.textContent = "Correct!";
         feedback.classList.remove('wrong');
-
     } else {
         if (timeLeft >= 15) {
             timeLeft -= 15;
@@ -147,16 +143,15 @@ function checkAnswer(index) {
         gameDone = true;
         endGame();
     };
-
 };
-//end quiz
+//end quiz and score time
 function endGame() {
     quizScreen.classList.add('hide');
     scoreScreen.classList.add('hide');
     endScreen.classList.remove('hide');
     scoreEl.textContent = timeLeft;
 }
-//show high score
+//Locally stored scores are added to hgih score list
 renderScores();
 var playerScoreArr;
 var player;
@@ -171,23 +166,22 @@ function renderScores() {
         listEl.appendChild(playerScore);
     };
 }
-
+//Scores are stored locally
 function saveScore() {
     headerEl.classList.add('hide');
     endScreen.classList.add('hide');
     scoreScreen.classList.remove('hide');
-
+    //player names and scores are stored in object
     player = {
         name: nameEl.value,
         score: timeLeft,
     };
-
+    //current user and score is added to list
     let playerScore = document.createElement('li');
     playerScore.textContent = player.name + ': ' + player.score;
     listEl.appendChild(playerScore);
-
+    //player objects are added to an array and stored
     if (playerScoreArr === null) {
-
         playerScoreArr = [player];
         localStorage.setItem('scores', JSON.stringify(playerScoreArr));
         console.log('in the null save');
@@ -197,11 +191,11 @@ function saveScore() {
     };
     renderScores();
 };
-
+// play again button refreshes the page
 function refreshPage() {
     window.location.reload();
 }
-
+//high score list is cleared and hidden
 function clearScore() {
     localStorage.removeItem('scores');
     listEl.classList.add('hide');
