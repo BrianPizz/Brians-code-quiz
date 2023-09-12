@@ -52,6 +52,11 @@ text-align: center;
 margin-top: 10vh;
 color: var(--heading);
 }
+.description{
+   width: 40%;
+   margin: 20px 30%;
+   color: var(--light);
+}
 .quiz{
     display: flex;
     justify-content: center;
